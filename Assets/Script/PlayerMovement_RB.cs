@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using UnityEngine;
 
 public class PlayerMovementRB : MonoBehaviour
 {
-    public float speed, rotationSpeed, JumpForce, sphereRadius; //*, gravityScale*; rotationSpeed o MouseSense
+    public float walkingspeed, runingSpeed, aceleration, rotationSpeed, JumpForce, sphereRadius; //*, gravityScale*; rotationSpeed o MouseSense
     public string groundName;
     //public LayerMask groundMask;
+
     private Rigidbody rb;
     private float x, z, mouseX; //input
     private bool jumpPressed;
+    private bool shiftPressed;
+    private float currentSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +28,10 @@ public class PlayerMovementRB : MonoBehaviour
         x = Input.GetAxisRaw("Horizontal");
         z = Input.GetAxisRaw("Vertical");
         mouseX = Input.GetAxis("Mouse X");
+        shiftPressed = Input.GetKey(KeyCode.LeftShift);
+
+        InterpolationSpeed();
+
         //jumpPressed = Input.GetAxis("Jump");
         if(Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
@@ -32,10 +40,31 @@ public class PlayerMovementRB : MonoBehaviour
         RotatePlayer();
     }
 
+    public void InterpolationSpeed()
+    {
+        if (shiftPressed)
+        {
+            currentSpeed = Mathf.Lerp(currentSpeed, runingSpeed, aceleration * Time.deltaTime);
+        }
+        else if (x != 0 || z != 0)
+        {
+            currentSpeed = Mathf.Lerp(currentSpeed, walkingspeed, aceleration * Time.deltaTime);
+        }
+        else 
+        {
+            currentSpeed = Mathf.Lerp(currentSpeed, 0, aceleration * Time.deltaTime);
+        }
+    }
+
+    public float GetCurrentSpeed()
+    {
+        return currentSpeed;
+    }
+
     void RotatePlayer()
     {
         Vector3 rotation = new Vector3(0, mouseX, 0) * rotationSpeed * Time.deltaTime;
-        transform.Rotate(rotation);
+        transform.Rotate(rotation); // Se aplica la rotacion, tiene numeros imaginarios
     }
     private void FixedUpdate()
     {
@@ -46,7 +75,7 @@ public class PlayerMovementRB : MonoBehaviour
 
     void ApplySpeed()
     {
-        rb.velocity = (transform.forward * speed * z) + (transform.right * speed * x) + new Vector3(0, rb.velocity.y, 0);
+        rb.velocity = (transform.forward * currentSpeed * z) + (transform.right * currentSpeed * x) + new Vector3(0, rb.velocity.y, 0);
         //Se aplica la rotacion, tiene numeros imaginarios.
         //*+ (transform.up * gravityScale)*/; GRAVEDAD CONSTANTE NO REALISTA.
         //rb.AddForce(transform.up * gravityScale); GRAVEDAD REALISTA.
