@@ -7,14 +7,16 @@ using UnityEngine.AI;
 
 public class ChaseState : State
 {
+    public string blendParameter;
     // Start is called before the first frame update
     public override State Run(GameObject owner)
     {
         State nextState = CheckActions(owner); //ejecutemos el checkactions 
         NavMeshAgent navMeshAgent = owner.GetComponent<NavMeshAgent>(); // el owner es el que tiene el objeto 
+        Animator animator = owner.GetComponent<Animator>();
         GameObject target = owner.GetComponent<TargetReference>().target; // para que persiga al objetivo
         navMeshAgent.SetDestination(target.transform.position); // dice el agente que su destino es el transform del objetivo y que esquivara los obstaculos para llegar al objetivo
-
+        animator.SetFloat(blendParameter, navMeshAgent.velocity.magnitude / navMeshAgent.speed);
         return nextState;
         
     }
