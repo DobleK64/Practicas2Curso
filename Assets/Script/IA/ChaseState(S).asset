@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: ChaseState(S)
   m_EditorClassIdentifier: 
   stateParameters: []
+  blendParameter: Speed
