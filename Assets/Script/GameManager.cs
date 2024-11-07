@@ -47,6 +47,12 @@ public class GameManager : MonoBehaviour
     //setter
 
     //callback ---> funcion que se va a llamar en el onclick() de los botones
+    public void LoadScene(string sceneName)
+    {
+
+        SceneManager.LoadScene(sceneName);
+         
+    }
 
     public void ExitGame()
     {
