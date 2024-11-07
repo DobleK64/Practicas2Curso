@@ -19,6 +19,7 @@ public class PlayerMovementRB : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        Cursor.lockState = CursorLockMode.Locked; //Desaparece el cursor
         //gravityScale = -Mathf.Abs(gravityScale); // menos el valor absoluto de la gravedad. Mathf = float
     }
 
