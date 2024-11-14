@@ -741,7 +741,7 @@ GameObject:
   - component: {fileID: 812475420}
   - component: {fileID: 812475419}
   - component: {fileID: 812475422}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -755,7 +755,7 @@ TerrainCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 812475418}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 757b0b9c8b7c2eb429e7a1b51dbf4b12, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1007,7 +1007,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1181655399}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13418809, y: 0.000000008525382, z: -0.0000000011544458, w: 0.9909559}
+  m_LocalRotation: {x: 0.13418809, y: -0.000000008525382, z: 0.0000000011544458, w: 0.9909559}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1410,7 +1410,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1709056061}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.17009595, y: 0.000000018956982, z: -0.00000000327219, w: 0.9854275}
+  m_LocalRotation: {x: 0.17009595, y: -0.00000001895698, z: 0.0000000032721896, w: 0.9854275}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1869,7 +1869,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2087797230}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 2
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1904,8 +1904,8 @@ MonoBehaviour:
   runingSpeed: 30
   aceleration: 5
   rotationSpeed: 100
-  JumpForce: 20
-  sphereRadius: 5
+  JumpForce: 500
+  sphereRadius: 1.19
   groundName: Ground
 --- !u!114 &2087797235
 MonoBehaviour:
