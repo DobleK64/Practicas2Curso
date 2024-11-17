@@ -7,8 +7,8 @@ using UnityEngine.UIElements;
 public class PatrolState : PlayerState
 {
     private Transform[] patrolPoints; // Puntos de patrulla
-    private int currentPointIndex = 0; // Índice del punto actual
-    private bool isPatrolling = false; // Bandera para controlar el patrullaje
+    private int currentPointIndex = 0; // Indice del punto actual
+    private bool isPatrolling = false; // Estado para controlar el patrullaje
 
     public PatrolState(NavMeshAgent agent, Transform player, Transform[] patrolPoints) : base(agent, player)
     {
