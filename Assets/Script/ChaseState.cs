@@ -11,13 +11,27 @@ public class ChaseState : State
     // Start is called before the first frame update
     public override State Run(GameObject owner)
     {
-        State nextState = CheckActions(owner); //ejecutemos el checkactions 
-        NavMeshAgent navMeshAgent = owner.GetComponent<NavMeshAgent>(); // el owner es el que tiene el objeto 
+        State nextState = CheckActions(owner); // Ejecutemos el CheckActions.
+        NavMeshAgent navMeshAgent = owner.GetComponent<NavMeshAgent>(); // El owner es el que tiene el objeto.
         Animator animator = owner.GetComponent<Animator>();
-        GameObject target = owner.GetComponent<TargetReference>().target; // para que persiga al objetivo
-        navMeshAgent.SetDestination(target.transform.position); // dice el agente que su destino es el transform del objetivo y que esquivara los obstaculos para llegar al objetivo
-        animator.SetFloat(blendParameter, navMeshAgent.velocity.magnitude / navMeshAgent.speed);
+        GameObject target = owner.GetComponent<TargetReference>().target; // Para que persiga al objetivo.
+
+        // Calculamos la distancia al objetivo.
+        float distanceToTarget = Vector3.Distance(owner.transform.position, target.transform.position);
+
+        if (distanceToTarget > navMeshAgent.stoppingDistance)
+        {
+            // Si estamos lejos, seguimos moviéndonos hacia el objetivo.
+            navMeshAgent.SetDestination(target.transform.position);
+            animator.SetFloat(blendParameter, navMeshAgent.velocity.magnitude / navMeshAgent.speed);
+        }
+        else
+        {
+            // Si estamos dentro del rango, detenemos el movimiento.
+            navMeshAgent.SetDestination(owner.transform.position);
+            animator.SetFloat(blendParameter, 0); // Detenemos la animación de movimiento.
+        }
+
         return nextState;
-        
     }
 }

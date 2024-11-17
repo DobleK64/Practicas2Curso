@@ -19,24 +19,10 @@ public class StateMachine : MonoBehaviour
         
         if (nextState) // si nextstate no es nulo cambiamos al siguiente estado
         {
-            currentState = nextState;
+            //currentState = nextState;
         }
         
-        // aqui hay que ejecutar el estado y si algun momento el estado cambia tenemos que cambiar el curren state, relaciona el currentstate con el run
-        
-        
-        
-        
-        
-        
+        // aqui hay que ejecutar el estado y si algun momento el estado cambia tenemos que cambiar el curren state, relaciona el currentstate co     
    //hay que ejecutar el estado y si en algun momento el estado cambia tenemos que cambiar el current state,relacionar el nextstate con el run
-    }
-    private void OnDrawGizmos()
-    {
-        if (currentState)//si no tiene el circulo lo dibujas
-            currentState.DrawAllActionsGizmos(gameObject);
-        else//
-            initialState.DrawAllActionsGizmos(gameObject);
-
     }
 }

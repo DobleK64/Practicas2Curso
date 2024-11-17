@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8876586c78e9d6542a2eb12609ad800f, type: 3}
   m_Name: GuardState (S)
   m_EditorClassIdentifier: 
-  stateParameters: []
+  stateParameters:
+  - actionValue: 0
+    action: {fileID: 0}
+    NextState: {fileID: 0}
   guardPoint: {x: 0, y: 0, z: 0}
   blendParameter: Speed
